@@ -8,11 +8,11 @@ class MenuItemAsObject {
   [key: number]: MenuItem;
 }
 
-interface CreateIterator {
-  createIterator(): void;
+interface Menu {
+  createIterator(): MyIterator;
 }
 
-class DinerMenu implements CreateIterator {
+class DinerMenu implements Menu {
   private items: MenuItem[];
 
   constructor(items: MenuItem[]) {
@@ -24,7 +24,7 @@ class DinerMenu implements CreateIterator {
   }
 }
 
-class BreakfastMenu implements CreateIterator {
+class BreakfastMenu implements Menu {
   private items: MenuItemAsObject;
 
   constructor(items: MenuItemAsObject) {
@@ -80,10 +80,10 @@ class BreakfastMenuIterator implements MyIterator {
 }
 
 class Waiter {
-  private dinerMenu: DinerMenu;
-  private breakfastMenu: BreakfastMenu;
+  private dinerMenu: Menu;
+  private breakfastMenu: Menu;
 
-  constructor(dinerMenu: DinerMenu, breakfastMenu: BreakfastMenu) {
+  constructor(dinerMenu: Menu, breakfastMenu: Menu) {
     this.dinerMenu = dinerMenu;
     this.breakfastMenu = breakfastMenu;
   }
